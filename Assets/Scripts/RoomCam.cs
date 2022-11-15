@@ -26,6 +26,8 @@ public class RoomCam : MonoBehaviour
     }
     void Update()
     {
+        Vector3 Mousepos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
+        Ray ray = Camera.main.ScreenPointToRay(Mousepos);
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
         {
             GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView -= 2;
@@ -38,6 +40,17 @@ public class RoomCam : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+        }
+        if (Input.GetButton("Fire1"))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, ray.direction, out hit, 100))
+            {
+                if (hit.transform.tag == "todestroy")
+                {
+                    Destroy(hit.transform.gameObject);
+                }
+            }
         }
         else if (Input.GetMouseButton(1))
         {
