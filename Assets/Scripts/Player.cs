@@ -1,6 +1,8 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +16,10 @@ public class Player : MonoBehaviour
     public static RoomCam instance;
     private Vector3 previousPosition;
     public GameObject roomCam;
+
+    public GameObject light;
+    public GameObject currentobject;
+    public GameObject oldobject;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,13 +29,36 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 Mousepos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
+        Ray ray = Camera.main.ScreenPointToRay(Mousepos);
+        Debug.DrawRay(Camera.main.transform.position, ray.direction * 1000, Color.red, 5f);
+        RaycastHit hover;
+        if (oldobject != null)
+        {
+            
+        }
+        if (Physics.Raycast(transform.position, ray.direction, out hover, 100,3))
+        {
+            //light.transform.position = Vector3.Lerp(light.transform.position, hover.point, Time.deltaTime * 10);
+
+        }
+        else 
+        {
+            
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
+        {
+            vcam.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView -= 2;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        {
+            vcam.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView += 2;
+        }
         if (Input.GetButton("Fire1"))
         {
-            Vector3 Mousepos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
-            Ray ray = Camera.main.ScreenPointToRay(Mousepos);
-            Debug.DrawRay(Camera.main.transform.position, ray.direction * 1000, Color.red, 5f);
             RaycastHit hit;
-            if(Physics.Raycast(transform.position, ray.direction, out hit, 100))
+            if (Physics.Raycast(transform.position, ray.direction, out hit, 100))
             {
                 
                 RoomCam.instance.target = hit.transform;
@@ -37,7 +66,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetMouseButton(2))
         {
             RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 1;
         }

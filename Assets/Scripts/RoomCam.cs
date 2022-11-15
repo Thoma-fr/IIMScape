@@ -11,6 +11,7 @@ public class RoomCam : MonoBehaviour
     public static RoomCam instance;
     private Vector3 previousPosition;
 
+    
     private void Awake()
     {
         
@@ -25,6 +26,15 @@ public class RoomCam : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
+        {
+            GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView -= 2;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        {
+            GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView += 2;
+        }
+        
         if (Input.GetMouseButtonDown(1))
         {
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
@@ -47,4 +57,5 @@ public class RoomCam : MonoBehaviour
             previousPosition = newPosition;
         }
     }
+    
 }
