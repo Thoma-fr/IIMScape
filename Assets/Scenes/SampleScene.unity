@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4555891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4555892}
+  m_Layer: 2
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4555892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4555891}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.96, y: -1.54, z: -4.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 193307807}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &193307806
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 193307807}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RoomWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,6 +187,7 @@ Transform:
   - {fileID: 931257513}
   - {fileID: 506054261}
   - {fileID: 758075583}
+  - {fileID: 4555892}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -268,7 +300,7 @@ GameObject:
   - component: {fileID: 285622166}
   - component: {fileID: 285622165}
   - component: {fileID: 285622164}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +398,7 @@ GameObject:
   - component: {fileID: 506054264}
   - component: {fileID: 506054263}
   - component: {fileID: 506054262}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,7 +805,7 @@ GameObject:
   - component: {fileID: 758075586}
   - component: {fileID: 758075585}
   - component: {fileID: 758075584}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,7 +903,7 @@ GameObject:
   - component: {fileID: 931257516}
   - component: {fileID: 931257515}
   - component: {fileID: 931257514}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1012,7 +1044,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -1123,6 +1155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762d8ad97e62d1742b2a0a3b2ccaf5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 963194227}
+  target: {fileID: 4555892}
+  vcam: {fileID: 1307055348}
+  distanceToTarget: 15
   roomCam: {fileID: 1668534785}
 --- !u!1 &1190864812
 GameObject:
@@ -1136,8 +1172,8 @@ GameObject:
   - component: {fileID: 1190864816}
   - component: {fileID: 1190864815}
   - component: {fileID: 1190864814}
-  m_Layer: 0
-  m_Name: Plane
+  m_Layer: 2
+  m_Name: sol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1268,7 +1304,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0030122, y: 1}
+    m_SensorSize: {x: 2.0683348, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1398,6 +1434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1668534787}
   - component: {fileID: 1668534786}
+  - component: {fileID: 1668534788}
   m_Layer: 0
   m_Name: CM vcam2
   m_TagString: Untagged
@@ -1421,7 +1458,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 9
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -1434,7 +1471,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0030122, y: 1}
+    m_SensorSize: {x: 2.0683348, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1459,6 +1496,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1668534788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668534785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644c2c5914dd3d64aa3fd45ee4270a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 963194227}
+  target: {fileID: 0}
+  distanceToTarget: 10
 --- !u!1 &1922762401
 GameObject:
   m_ObjectHideFlags: 3
