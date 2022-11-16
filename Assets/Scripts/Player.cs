@@ -21,12 +21,22 @@ public class Player : MonoBehaviour
     public GameObject light;
     public GameObject currentobject;
     public GameObject oldobject;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    public int score;
+
+    public static Player playerinstance;
+    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (playerinstance == null)
+        {
+            playerinstance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -65,6 +75,11 @@ public class Player : MonoBehaviour
                 {
                     hit.transform.GetComponent<TablePiece>().check();
                     Debug.Log("piece");
+                }
+                if (hit.transform.tag == "coin")
+                {
+                    score++;
+                    Destroy(hit.transform.gameObject);
                 }
                 else {
                     RoomCam.instance.target = hit.transform;
