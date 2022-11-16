@@ -7,10 +7,11 @@ using UnityEngine.Windows;
 public class code : MonoBehaviour
 {
     public string goodcode;
-    public TMP_InputField input;
+    public GameObject field;
+    private TMP_InputField input;
     private void Start()
     {
-        input = GetComponent<TMP_InputField>();
+        input = field.GetComponent<TMP_InputField>();
         input.Select();
         input.ActivateInputField();
     }

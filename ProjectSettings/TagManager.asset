@@ -9,6 +9,7 @@ TagManager:
   - ship
   - todestroy
   - piece
+  - code
   layers:
   - Default
   - TransparentFX

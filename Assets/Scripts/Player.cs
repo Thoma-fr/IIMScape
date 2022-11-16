@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     public Transform target;
-
+    public GameObject field;
     public GameObject vcam;
     [SerializeField] private float distanceToTarget = 10;
     public static RoomCam instance;
@@ -69,10 +70,18 @@ public class Player : MonoBehaviour
                     RoomCam.instance.target = hit.transform;
                     RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 20;
                 }
-                
+                if (hit.transform.tag == "code")
+                {
+                    Debug.Log("oui");
+                    field.SetActive(true);
+                }
+                if (hit.transform.tag == "movable")
+                {
+                    hit.transform.GetComponent<clickandmove>().move();
+                }
             }
         }
-
+        
         if(Input.GetMouseButton(2))
         {
             RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 1;
@@ -101,5 +110,9 @@ public class Player : MonoBehaviour
             previousPosition = newPosition;
         }
         
+    }
+    public void close()
+    {
+        field.SetActive(false);
     }
 }
