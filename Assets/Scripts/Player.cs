@@ -6,7 +6,7 @@ using Unity.Burst.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Camera cam;
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject currentobject;
     public GameObject oldobject;
 
+    public TextMeshProUGUI buttontext;
     public int score;
 
     public static Player playerinstance;
@@ -87,6 +88,7 @@ public class Player : MonoBehaviour
                 }
                 else {
                     RoomCam.instance.target = hit.transform;
+                    RoomCam.instance.lookarond();
                     RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 20;
                 }
                 if (hit.transform.tag == "code")
@@ -130,5 +132,9 @@ public class Player : MonoBehaviour
     public void close()
     {
         field.SetActive(false);
+    }
+    public void codebutton(int num)
+    {
+        buttontext.text += num;
     }
 }

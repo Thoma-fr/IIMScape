@@ -8,12 +8,11 @@ public class code : MonoBehaviour
 {
     public string goodcode;
     public GameObject field;
-    private TMP_InputField input;
+    private TextMeshProUGUI input;
     private void Start()
     {
-        input = field.GetComponent<TMP_InputField>();
-        input.Select();
-        input.ActivateInputField();
+        input = field.GetComponent<TextMeshProUGUI>();
+
     }
     private void Update()
     {
