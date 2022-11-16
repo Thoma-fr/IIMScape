@@ -58,15 +58,18 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Fire1"))
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, ray.direction, out hit, 100))
+            if (Physics.Raycast(transform.position, ray.direction, out hit, 100,3))
             {
                 if (hit.transform.tag == "piece")
                 {
                     hit.transform.GetComponent<TablePiece>().check();
                     Debug.Log("piece");
                 }
-                RoomCam.instance.target = hit.transform;
-                RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 20;
+                else {
+                    RoomCam.instance.target = hit.transform;
+                    RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 20;
+                }
+                
             }
         }
 

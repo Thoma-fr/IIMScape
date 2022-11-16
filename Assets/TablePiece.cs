@@ -9,5 +9,6 @@ public class TablePiece : MonoBehaviour
     public void check()
     {
         BrokenTable.instance.CheckPieces(pieceNumber);
+        Destroy(gameObject);
     }
 }
