@@ -11,7 +11,6 @@ public class RoomCam : MonoBehaviour
     public static RoomCam instance;
     private Vector3 previousPosition;
 
-    
     private void Awake()
     {
         

@@ -9,6 +9,9 @@ TagManager:
   - ship
   - todestroy
   - piece
+  - code
+  - movable
+  - coin
   layers:
   - Default
   - TransparentFX
