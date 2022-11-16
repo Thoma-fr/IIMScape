@@ -6,6 +6,8 @@ public class BrokenTable : MonoBehaviour
 {
     public List<GameObject> pieces;
     public static BrokenTable instance;
+    public int count;
+    public GameObject text;
     private void Awake()
     {
         if (instance == null)
@@ -20,6 +22,11 @@ public class BrokenTable : MonoBehaviour
 
     public void CheckPieces( int i)
     {
+        count ++;
         pieces[i].SetActive(true);
+        if (count >= pieces.Count)
+        {
+            text.SetActive(true);
+        }
     }
 }

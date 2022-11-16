@@ -76,10 +76,14 @@ public class Player : MonoBehaviour
                     hit.transform.GetComponent<TablePiece>().check();
                     Debug.Log("piece");
                 }
-                if (hit.transform.tag == "coin")
+                else if (hit.transform.tag == "coin")
                 {
                     score++;
                     Destroy(hit.transform.gameObject);
+                }
+                else if (hit.transform.tag == "movable")
+                {
+                    hit.transform.GetComponent<clickandmove>().move();
                 }
                 else {
                     RoomCam.instance.target = hit.transform;
@@ -90,10 +94,7 @@ public class Player : MonoBehaviour
                     Debug.Log("oui");
                     field.SetActive(true);
                 }
-                if (hit.transform.tag == "movable")
-                {
-                    hit.transform.GetComponent<clickandmove>().move();
-                }
+                
             }
         }
         
