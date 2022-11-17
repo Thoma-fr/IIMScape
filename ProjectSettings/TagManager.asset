@@ -14,6 +14,7 @@ TagManager:
   - coin
   - dice
   - amogus
+  - rebu
   layers:
   - Default
   - TransparentFX
