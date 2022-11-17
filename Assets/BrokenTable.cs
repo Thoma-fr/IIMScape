@@ -5,19 +5,12 @@ using UnityEngine;
 public class BrokenTable : MonoBehaviour
 {
     public List<GameObject> pieces;
-    public static BrokenTable instance;
+    //public static BrokenTable instance;
     public int count;
     public GameObject text;
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
     }
 
     public void CheckPieces( int i)

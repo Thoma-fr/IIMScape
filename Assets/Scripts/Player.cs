@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public AudioSource audioSource;
     public string rebus = "école";
     public GameObject reponserebu;
-
     public GameObject rebusresult;
     public enum gameState
     {
@@ -18,7 +17,6 @@ public class Player : MonoBehaviour
         lv2,
         lv3
     }
-
     public GameObject lv1, lv2, lv3;
 
     public gameState myState = gameState.lv1;
@@ -229,7 +227,7 @@ public class Player : MonoBehaviour
                     lv1.SetActive(false);
                     lv3.SetActive(true);
                     lv2.transform.DOMoveX(-100, 3f);
-                    lv3.transform.DOMoveX(-1, 3f);
+                    lv3.transform.DOMoveX(1.81f, 3f);
                     //rocurrentRoomCam = roomCam1;
                     break;
                 default:

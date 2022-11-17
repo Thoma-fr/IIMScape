@@ -10,7 +10,7 @@ public class code : MonoBehaviour
     //public GameObject field;
     public TextMeshProUGUI input;
     public Player.gameState gameState;
-    public GameObject qrcodefin;
+    public GameObject qr1,qr2,qr3;
     public bool isending;
 
 
@@ -35,7 +35,9 @@ public class code : MonoBehaviour
                 }
                 else
                 {
-                    qrcodefin.SetActive(true);
+                    qr1.SetActive(true);
+                    qr2.SetActive(true);
+                    qr3.SetActive(true);
                 }
             }
             else
