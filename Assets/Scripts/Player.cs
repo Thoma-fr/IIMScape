@@ -1,11 +1,6 @@
 using Cinemachine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Runtime.CompilerServices;
 using DG.Tweening;
@@ -182,16 +177,25 @@ public class Player : MonoBehaviour
     }
     public void codebutton(int num)
     {
+        Debug.Log(num);
         buttontext.text += num;
+    }
+    public void resetstring()
+    {
+        Debug.Log("reset");
+        buttontext.text = "";
     }
     public void changecam(gameState state)
     {
+        myState = state;
         switch (state)
         {
             case gameState.lv1:
                 currentCam = vcam1;
+                lv2.SetActive(false);
                 break;
             case gameState.lv2:
+                lv2.SetActive(true);
                 lv1.transform.DOMoveX(-100, 3f);
                 lv2.transform.DOMoveX(-1, 3f);
                 break;
