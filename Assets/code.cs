@@ -9,6 +9,11 @@ public class code : MonoBehaviour
     public string goodcode;
     //public GameObject field;
     public TextMeshProUGUI input;
+    public Player.gameState gameState;
+    public GameObject qrcodefin;
+    public bool isending;
+
+
     private void Start()
     {
         //input = field.GetComponent<TextMeshProUGUI>();
@@ -17,16 +22,28 @@ public class code : MonoBehaviour
     private void Update()
     {
         
-        if (input.text==goodcode)
-        {
-            Player.playerinstance.changecam(Player.gameState.lv2);
-            Debug.Log("oui");
-            gameObject.SetActive(false);
+       
+            if (input.text == goodcode)
+            {
+                if (!isending)
+                {
+
+
+                    Player.playerinstance.changecam(gameState);
+                    Debug.Log("oui");
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    qrcodefin.SetActive(true);
+                }
+            }
+            else
+            {
+                Debug.Log("non");
+            }
+
         }
-        else
-        {
-            Debug.Log("non");
-        }
+        
     }
     
-}
