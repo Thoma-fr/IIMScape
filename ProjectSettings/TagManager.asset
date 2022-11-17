@@ -12,6 +12,7 @@ TagManager:
   - code
   - movable
   - coin
+  - dice
   layers:
   - Default
   - TransparentFX

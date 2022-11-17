@@ -41,7 +41,7 @@ public class RoomCam : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+            previousPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             //lookarond();
             //transform.DOLookAt(target.transform.position, 2f);
         }
@@ -63,7 +63,7 @@ public class RoomCam : MonoBehaviour
     }
     public void lookarond()
     {
-        newPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+        newPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         direction = previousPosition - newPosition;
 
         float rotationAroundYAxis = -direction.x * 180; // camera moves horizontally
