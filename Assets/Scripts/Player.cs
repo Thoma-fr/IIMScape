@@ -8,6 +8,7 @@ using UnityEngine.Audio;
 public class Player : MonoBehaviour
 {
     public AudioSource audioSource;
+    public AudioClip coinsound;
     public string rebus = "école";
     public GameObject reponserebu;
     public GameObject rebusresult;
@@ -124,6 +125,7 @@ public class Player : MonoBehaviour
                 {
                     score++;
                     Destroy(hit.transform.gameObject);
+                    audioSource.PlayOneShot(coinsound);
                 }
                 else if (hit.transform.tag == "movable")
                 {
@@ -144,6 +146,7 @@ public class Player : MonoBehaviour
                 }
                 if (hit.transform.tag == "amogus")
                 {
+                    
                     audioSource.PlayOneShot(amogus);
                 }
                 if (hit.transform.tag == "dice")

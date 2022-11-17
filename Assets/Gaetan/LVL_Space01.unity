@@ -18326,6 +18326,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5098993418612764895, guid: 58ba0c6d5a4cd7a4da6f95e737532c4f, type: 3}
+      propertyPath: coinsound
+      value: 
+      objectReference: {fileID: 8300000, guid: c7949d7e0a0b5704eb09debf414c702c, type: 3}
+    - target: {fileID: 5098993418612764895, guid: 58ba0c6d5a4cd7a4da6f95e737532c4f, type: 3}
       propertyPath: scoretext
       value: 
       objectReference: {fileID: 2077142157}
