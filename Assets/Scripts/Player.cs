@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
             Destroy(this);
         }
     }
+       
+
     private void Start()
     {
         audioSource = GameObject.Find("audio").GetComponent<AudioSource>();
@@ -74,7 +76,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        changecam(myState);
+        //changecam(myState);
         scoretext.text = score.ToString();
         if(reponserebu.GetComponent<TMP_InputField>().text==rebus)
         {
@@ -133,6 +135,8 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
+                    roomCam1.SetActive(true);
+                    currentCam.SetActive(false);
                     RoomCam.instance.target = hit.transform;
                     RoomCam.instance.lookarond();
                     RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 20;
@@ -140,9 +144,13 @@ public class Player : MonoBehaviour
                 if (hit.transform.tag == "code")
                 {
                     // Debug.Log("oui");
+
                     field.SetActive(true);
                     buttonclose.SetActive(true);
+                    roomCam1.SetActive(true);
+                    currentCam.SetActive(false);
                     RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 1;
+                    currentCam.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = 30;
                 }
                 if (hit.transform.tag == "amogus")
                 {
@@ -164,28 +172,34 @@ public class Player : MonoBehaviour
         }
             if (Input.GetMouseButton(2))
             {
-                RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 1;
-            }
+            RoomCam.instance.gameObject.SetActive(false);
+            currentCam.SetActive(true);
+            RoomCam.instance.GetComponent<CinemachineVirtualCamera>().Priority = 1;
+            currentCam.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = 30;
+        }
             if (Input.GetMouseButtonDown(1))
             {
                 previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
             }
             else if (Input.GetMouseButton(1))
             {
-                Vector3 newPosition = cam.ScreenToViewportPoint(Input.mousePosition);
-                Vector3 direction = previousPosition - newPosition;
+                if (currentCam.activeInHierarchy)
+                {
+                    Vector3 newPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+                    Vector3 direction = previousPosition - newPosition;
 
-                float rotationAroundYAxis = -direction.x * 180; // camera moves horizontally
-                float rotationAroundXAxis = direction.y * 180; // camera moves vertically
+                    float rotationAroundYAxis = -direction.x * 180; // camera moves horizontally
+                    float rotationAroundXAxis = direction.y * 180; // camera moves vertically
 
-                currentCam.transform.position = target.position;
+                    currentCam.transform.position = target.position;
 
-                currentCam.transform.Rotate(new Vector3(1, 0, 0), rotationAroundXAxis);
-                currentCam.transform.Rotate(new Vector3(0, 1, 0), rotationAroundYAxis, Space.World); // <— This is what makes it work!
+                    currentCam.transform.Rotate(new Vector3(1, 0, 0), rotationAroundXAxis);
+                    currentCam.transform.Rotate(new Vector3(0, 1, 0), rotationAroundYAxis, Space.World); // <— This is what makes it work!
 
-                currentCam.transform.Translate(new Vector3(0, 0, -distanceToTarget));
+                    currentCam.transform.Translate(new Vector3(0, 0, -distanceToTarget));
 
-                previousPosition = newPosition;
+                    previousPosition = newPosition;
+                }
             }
 
         
@@ -225,14 +239,20 @@ public class Player : MonoBehaviour
                     lv2.SetActive(true);
                     lv1.transform.DOMoveX(-100, 3f);
                     lv2.transform.DOMoveX(-1, 3f);
-                    break;
+                    RoomCam.instance.gameObject.SetActive(false);
+                    roomCam1.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = 30;
+                    currentCam.SetActive(true);
+                break;
                 case gameState.lv3:
                     lv1.SetActive(false);
                     lv3.SetActive(true);
                     lv2.transform.DOMoveX(-100, 3f);
                     lv3.transform.DOMoveX(1.81f, 3f);
-                    //rocurrentRoomCam = roomCam1;
-                    break;
+                    RoomCam.instance.gameObject.SetActive(false);
+                    roomCam1.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = 30;
+                currentCam.SetActive(true);
+                //rocurrentRoomCam = roomCam1;
+                break;
                 default:
                     break;
             }

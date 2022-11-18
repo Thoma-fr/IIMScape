@@ -23,8 +23,13 @@ public class RoomCam : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnEnable()
+    {
+        transform.position = new Vector3(-5.91f, 4.49f, -6.26f);
+    }
     void Update()
     {
+        
         Vector3 Mousepos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
         Ray ray = Camera.main.ScreenPointToRay(Mousepos);
 
